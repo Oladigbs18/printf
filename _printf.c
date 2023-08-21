@@ -18,6 +18,8 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
+			const char *s;
+
 			format++;
 			switch (*format)
 			{
@@ -26,19 +28,16 @@ int _printf(const char *format, ...)
 					_putchar(va_arg(args, int));
 					break;
 				case 's':
+					count += 1;
+					s = va_arg(args, char *);
+					if (s == NULL)
+					s = "(null)";
+					while (*s != '\0')
 					{
-						const char *s;
-						count += 1;
-						s = va_arg(args, char *);
-						if (s == NULL)
-						s = "(null)";
-						while (*s != '\0')
-						{
-							_putchar(*s);
-							s++;
-						}
-						break;
+						_putchar(*s);
+						s++;
 					}
+					break;
 				case '%':
 					count += 1;
 					_putchar('%');

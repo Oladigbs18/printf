@@ -18,10 +18,16 @@ typedef struct print
 	int (*f)(va_list);
 } print_t;
 
+int print_binary(va_list);
+int print_decimal(va_list);
+int print_int(va_list);
 int print_percent(va_list);
 int print_string(va_list);
 int print_char(va_list);
 int _putchar(char c);
 int _printf(const char *format, ...);
+
+int print_number(int n);
+int print_number_binary(int n);
 
 #endif /* MAIN_H */

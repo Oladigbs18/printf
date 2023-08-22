@@ -9,16 +9,12 @@
 void start_printing(char *format, va_list list, int *count)
 {
 	print_t print[] = {
-		{"c", print_char},
-		{"s", print_string},
+		{"c", print_char}, {"s", print_string}, {"S", print_S},
 		{"%", print_percent},
-		{"d", print_int},
-		{"i", print_decimal},
+		{"d", print_int}, {"i", print_decimal},
 		{"b", print_binary},
-		{"u", print_unsigned},
-		{"o", print_octal},
-		{"x", print_hex},
-		{"X", print_HEX},
+		{"u", print_unsigned}, {"o", print_octal},
+		{"x", print_hex}, {"X", print_HEX},
 		{NULL, NULL}
 	};
 

@@ -18,6 +18,7 @@ typedef struct print
 	int (*f)(va_list);
 } print_t;
 
+int print_S(va_list);
 int print_HEX(va_list);
 int print_hex(va_list);
 int print_octal(va_list);

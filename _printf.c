@@ -8,56 +8,52 @@
 
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int count = 0;
+	print_t print[] = {
+		{"c", print_char},
+		{"s", print_string},
+		{"%", print_percent},
+		{NULL, NULL}
+	};
 
-	va_start(args, format);
+	va_list list;
+
+	int i, count = 0;
+
+	va_start(list, format);
+
 	if (format == NULL)
 		return (-1);
+
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
-			const char *s;
-
 			format++;
-			switch (*format)
+			for (i = 0; print[i].type != NULL; i++)
 			{
-				case 'c':
-					count += 1;
-					_putchar(va_arg(args, int));
+				if (*format == print[i].type[0])
+				{
+					count += print[i].f(list);
 					break;
-				case 's':
-					count += 1;
-					s = va_arg(args, char *);
-					if (s == NULL)
-					s = "(null)";
-					while (*s != '\0')
-					{
-						_putchar(*s);
-						s++;
-					}
-					break;
-				case '%':
-					count += 1;
-					_putchar('%');
-					break;
-				default:
-					_putchar('%');
-					_putchar(*format);
-					count += 2;
-					break;
+				}
 			}
 
+			if (print[i].type == NULL && *format != ' ')
+			{
+				_putchar('%');
+				_putchar(*format);
+				count += 2;
+			}
 		}
 		else
 		{
 			_putchar(*format);
-			count += 1;
+			count++;
 		}
 		format++;
 	}
 
-	va_end(args);
+	va_end(list);
+
 	return (count);
 }

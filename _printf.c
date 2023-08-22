@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * _printf - prints anything
+ * start_printing - starts printing
  * @format: list of types of arguments passed to the function
- * Return: number of characters printed
+ * @list: list of arguments
+ * @count: number of characters printed
  */
-
-int _printf(const char *format, ...)
+void start_printing(char *format, va_list list, int *count)
 {
 	print_t print[] = {
 		{"c", print_char},
@@ -18,9 +18,35 @@ int _printf(const char *format, ...)
 		{NULL, NULL}
 	};
 
+	int i;
+
+	for (i = 0; print[i].type != NULL; i++)
+	{
+		if (*format == print[i].type[0])
+		{
+			*count += print[i].f(list);
+			break;
+		}
+	}
+
+	if (print[i].type == NULL && *format != ' ')
+	{
+		_putchar('%');
+		_putchar(*format);
+		*count += 2;
+	}
+}
+
+/**
+ * _printf - prints anything
+ * @format: list of types of arguments passed to the function
+ * Return: number of characters printed
+ */
+int _printf(const char *format, ...)
+{
 	va_list list;
 
-	int i, count = 0;
+	int count = 0;
 
 	va_start(list, format);
 
@@ -32,21 +58,7 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			for (i = 0; print[i].type != NULL; i++)
-			{
-				if (*format == print[i].type[0])
-				{
-					count += print[i].f(list);
-					break;
-				}
-			}
-
-			if (print[i].type == NULL && *format != ' ')
-			{
-				_putchar('%');
-				_putchar(*format);
-				count += 2;
-			}
+			start_printing((char *)format, list, &count);
 		}
 		else
 		{

@@ -15,6 +15,8 @@ void start_printing(char *format, va_list list, int *count)
 		{"d", print_int},
 		{"i", print_decimal},
 		{"b", print_binary},
+		{"u", print_unsigned},
+		{"o", print_octal},
 		{NULL, NULL}
 	};
 

@@ -18,6 +18,8 @@ typedef struct print
 	int (*f)(va_list);
 } print_t;
 
+int print_octal(va_list);
+int print_unsigned(va_list);
 int print_binary(va_list);
 int print_decimal(va_list);
 int print_int(va_list);

@@ -18,6 +18,7 @@ typedef struct print
 	int (*f)(va_list);
 } print_t;
 
+int print_address(va_list);
 int print_S(va_list);
 int print_HEX(va_list);
 int print_hex(va_list);
@@ -34,5 +35,6 @@ int _printf(const char *format, ...);
 
 int print_number(int n);
 int print_number_binary(int n);
+int print_hex_address(unsigned long int n);
 
 #endif /* MAIN_H */

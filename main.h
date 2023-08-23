@@ -37,4 +37,6 @@ int print_number(int n);
 int print_number_binary(int n);
 int print_hex_address(unsigned long int n);
 
+unsigned char handle_characters(const char *character, char *index);
+
 #endif /* MAIN_H */

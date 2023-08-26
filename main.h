@@ -34,5 +34,5 @@ int _putchar(char c);
 int _printf(const char *format, ...);
 int print_number(int n);
 int print_number_binary(int n);
-
+int print_rot13(char c);
 #endif /* MAIN_H */

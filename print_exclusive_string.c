@@ -9,7 +9,7 @@ int printf_exclusive_string(va_list val)
 {
 		char *s;
 		int i, len = 0;
-		int cast;	
+		int cast;
 		s = va_arg(val, char *);
 		if (s == NULL)
 			s = "(null)";
@@ -25,7 +25,7 @@ int printf_exclusive_string(va_list val)
 																																								_putchar('0');
 																																												len++;
 																																															}
-																																		len = len + printf_HEX(cast);
+																																		len = len + printf_HEX_aux(cast);
 																																				}
 														else
 																	{

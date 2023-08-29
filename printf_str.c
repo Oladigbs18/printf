@@ -1,29 +1,28 @@
 #include "main.h"
 /**
- *  * printf_string - print a string.
- *   * @val: arguments.
- *    * Return: the length of the string.
+ *  * _strlen - Returns the length of a string.
+ *   * @s: Type char pointer.
+ *    * Return: c.
  *     */
-
-int printf_string(va_list val)
+int _strlen(char *s)
 {
-		char *s;
-			int i, len;
+		int c;
 
-				s = va_arg(val, char *);
-					if (s == NULL)
-							{
-										s = "(null)";
-												len = _strlen(s);
-														for (i = 0; i < len; i++)
-																		_putchar(s[i]);
-																return (len);
-																	}
-						else
-								{
-											len = _strlen(s);
-													for (i = 0; i < len; i++)
-																	_putchar(s[i]);
-															return (len);
-																}
+			for (c = 0; s[c] != 0; c++)
+						;
+				return (c);
+
+}
+/**
+ *  * _strlenc - Strlen function but applied for constant char pointer s
+ *   * @s: Type char pointer
+ *    * Return: c
+ *     */
+int _strlenc(const char *s)
+{
+		int c;
+
+			for (c = 0; s[c] != 0; c++)
+						;
+				return (c);
 }
